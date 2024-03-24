@@ -15,7 +15,7 @@ var Attachments: IFileName[] = [];
 @Component({
   selector: 'app-root',
   standalone: true,
-  templateUrl: './duplicate-filename-resolver-demo.html',
+  templateUrl: './demo.html',
   imports: [
     MatIconModule,
     MatDividerModule,

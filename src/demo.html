@@ -3,14 +3,7 @@
     <button type="button" mat-raised-button (click)="fileInput.click()">
       Browse files
     </button>
-    <input
-      hidden
-      onclick="this.value=null"
-      (change)="onFileSelected($event)"
-      multiple="multiple"
-      #fileInput
-      type="file"
-    />
+    <input hidden onclick="this.value=null" (change)="onFileSelected($event)" multiple #fileInput type="file" />
     <h3>Files</h3>
     @if (dataSource.data.length == 0) {
     <h4>No files selected</h4>
@@ -26,13 +19,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
     } @if (dataSource.data.length > 0) {
-    <button
-      style="margin-top: 15px"
-      mat-raised-button
-      color="warn"
-      (click)="clearFiles()"
-    >
-      Clear files</button
-    >}
+    <button style="margin-top: 15px" mat-raised-button color="warn" (click)="clearFiles()">
+      Clear files</button>}
   </mat-card-content>
 </mat-card>
