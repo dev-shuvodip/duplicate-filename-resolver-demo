@@ -1,13 +1,13 @@
 <mat-card style="margin: 15px; padding: 15px">
   <mat-card-content>
-    <button type="button" mat-raised-button (click)="fileInput.click()">
+    <button type="button" color="primary" mat-raised-button (click)="fileInput.click()">
       Browse files
     </button>
     <input hidden onclick="this.value=null" (change)="onFileSelected($event)" multiple #fileInput type="file" />
     <h3>Files</h3>
     @if (dataSource.data.length == 0) {
     <h4>No files selected</h4>
-    } @if (dataSource.data.length > 0) {
+    } @else {
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -18,8 +18,9 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-    } @if (dataSource.data.length > 0) {
     <button style="margin-top: 15px" mat-raised-button color="warn" (click)="clearFiles()">
-      Clear files</button>}
+      Clear files
+    </button>
+    }
   </mat-card-content>
 </mat-card>
