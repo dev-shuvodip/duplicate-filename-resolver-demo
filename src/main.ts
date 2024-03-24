@@ -33,10 +33,14 @@ export class App {
     this.files = [];
     this.files = [...event.target.files];
     this.files.forEach((file) => {
-      Attachments.push({
-        name: getUniqueFileName(Attachments, file.name),
-      });
-      this.dataSource = new MatTableDataSource<IFileName>(Attachments);
+      try {
+        Attachments.push({
+          name: getUniqueFileName(Attachments, file.name),
+        });
+        this.dataSource = new MatTableDataSource<IFileName>(Attachments);
+      } catch (error) {
+        console.error(error);
+      }
     });
   }
 
