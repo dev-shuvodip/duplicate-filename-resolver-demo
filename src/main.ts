@@ -38,7 +38,6 @@ export class App {
           name: getUniqueFileName(Attachments, file.name),
           file: file,
         });
-        console.log(Attachments);
         this.dataSource = new MatTableDataSource<IFile>(Attachments);
       } catch (error) {
         console.error(error);
