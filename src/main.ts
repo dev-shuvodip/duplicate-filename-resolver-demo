@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,10 +7,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatTableDataSource } from '@angular/material/table';
-import { IFileName, getUniqueFileName } from 'duplicate-filename-resolver';
+import { IFile, getUniqueFileName } from 'duplicate-filename-resolver';
 import 'zone.js';
 
-var Attachments: IFileName[] = [];
+var Attachments: IFile[] = [];
 
 @Component({
   selector: 'app-root',
@@ -27,7 +27,7 @@ var Attachments: IFileName[] = [];
 export class App {
   files: File[] = [];
   displayedColumns: string[] = ['name'];
-  dataSource = new MatTableDataSource<IFileName>(Attachments);
+  dataSource = new MatTableDataSource<IFile>(Attachments);
 
   onFileSelected(event: any): void {
     this.files = [];
@@ -36,8 +36,10 @@ export class App {
       try {
         Attachments.push({
           name: getUniqueFileName(Attachments, file.name),
+          file: file,
         });
-        this.dataSource = new MatTableDataSource<IFileName>(Attachments);
+        console.log(Attachments);
+        this.dataSource = new MatTableDataSource<IFile>(Attachments);
       } catch (error) {
         console.error(error);
       }
@@ -46,7 +48,7 @@ export class App {
 
   clearFiles() {
     Attachments = [];
-    this.dataSource = new MatTableDataSource<IFileName>([]);
+    this.dataSource = new MatTableDataSource<IFile>([]);
   }
 }
 
